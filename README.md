@@ -1,63 +1,58 @@
 # Membra Wear
 
-Membra Wear is the wearable media-kit module for MEMBRA.
+**Membra Wear is the wearable QR/NFC media-kit module for MEMBRA Labs and the MEMBRA Proof Network.**
 
-It defines how clothing, bags, patches, event badges, and other wearable surfaces can carry verified QR or NFC campaign media through the Membra control plane.
+It turns shirts, hoodies, jackets, hats, tote bags, backpacks, delivery bags, patches, and event badges into verified physical media inventory.
 
-## One-line thesis
+## Company Context
 
-Turn wearable surfaces into trackable physical media inventory with approved creative, QR or NFC attribution, proof review, and campaign reporting.
+- Company: **MEMBRA Labs**
+- Flagship product: **MEMBRA Proof Network**
+- Commercial wedge supported: **Membra Ads**
+- Module: **Membra Wear**
+- Category: wearable media kits, QR/NFC apparel, proof-backed campaign placements
 
-## Product category
+## One-Line Thesis
 
-- Wearable media inventory
-- QR and NFC apparel module
-- Print-on-demand campaign kit layer
-- Physical proof and analytics module
+Membra Wear turns wearable surfaces into trackable physical media inventory with approved creative, QR/NFC attribution, proof review, and campaign reporting.
 
-## Supported surfaces
+## Product Role
 
-- T-shirts
-- Hoodies
-- Jackets
-- Hats
-- Tote bags
-- Backpacks
-- Delivery bags
+Membra Wear extends the Membra Ads workflow into apparel and mobile physical surfaces.
+
+It supports:
+
+- campaign shirts
+- hoodies and jackets
+- hats
+- tote bags
+- backpacks
+- delivery bags
 - QR patches
 - NFC patches
-- Event badges
+- event badges
+- local promotional kits
 
-## Relationship to other repos
-
-`Membra_ads` is the campaign control plane.
-
-`Membra_wear` is the wearable catalog and fulfillment module.
-
-`membra-qr-gateway` is the dashboard and QR/NFC interface.
-
-`Membra_wallet` handles payout boundaries and audit rules.
-
-## Wearable media kit lifecycle
+## Wearable Media Kit Lifecycle
 
 1. Campaign is created in Membra Ads.
 2. Creative is approved.
 3. Wearable placement is selected.
-4. Membra generates QR or NFC identity.
+4. MEMBRA generates QR or NFC identity.
 5. Print-ready files are generated.
-6. Vendor produces the item or files are exported for manual production.
+6. Vendor produces the item or exports files for manual production.
 7. Recipient confirms receipt.
 8. Proof media is submitted.
 9. Proof is reviewed.
 10. Campaign reporting begins.
 
-## Proof requirements
+## Proof Requirements
 
 Minimum proof package:
 
 - visible wearable item
 - visible campaign creative
-- visible QR or NFC marker when applicable
+- visible QR/NFC marker when applicable
 - receipt confirmation
 - timestamp
 
@@ -66,17 +61,52 @@ Optional proof package:
 - location proof
 - event context
 - recurring campaign proof
-- scan or tap activity report
+- scan/tap activity report
 
-## Vendor strategy
+## Vendor Strategy
 
 Use adapter interfaces rather than hardcoding one vendor.
 
-- Printify for product and order automation.
-- Printful for catalog, mockup, file, and order workflows.
-- Gelato for global fulfillment.
-- Manual vendor workflow for local printers or event batches.
+Potential rails:
 
-## Current stage
+- Printify for product and order automation
+- Printful for catalog, mockup, file, and order workflows
+- Gelato for global fulfillment
+- local printers for event batches
+- manual vendor workflow for high-touch campaigns
 
-Product module scaffold. Next step: add catalog schema, vendor adapter interfaces, and media-kit templates.
+## Integration Points
+
+| Repo | Relationship |
+|---|---|
+| `overandor/Membra_ads` | campaign, creative approval, media-kit request, proof rules |
+| `overandor/Membra_vendor_adapters` | Printful/Printify/Gelato/local vendor ordering |
+| `overandor/membra-qr-gateway` | wearable campaign status, scan/tap dashboard, proof view |
+| `overandor/Membra_kpi` | wearable performance reports |
+| `overandor/Membra_wallet` | reward eligibility and payout boundary |
+| `overandor/Membra_proofbook` | proof hash and scan/tap ledger records |
+
+## Safety Rules
+
+- no payout eligibility without approved proof
+- no campaign activation without approved creative
+- no QR/NFC attribution without MEMBRA-controlled identifiers
+- no guaranteed scan volume
+- no guaranteed owner earnings
+- no vendor order without explicit campaign state
+
+## Productization Priority
+
+Membra Wear is a strong commercial extension after Membra Ads and QR Gateway are demo-connected.
+
+Next steps:
+
+1. define wearable catalog schema
+2. define media-kit object schema
+3. define vendor adapter contract
+4. create demo wearable campaign records
+5. connect proof and scan states into QR Gateway
+
+## Current Stage
+
+Product module scaffold. Suitable for company packaging and demo roadmap; not yet a production vendor-integrated module.
